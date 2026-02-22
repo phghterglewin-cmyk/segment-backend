@@ -60,7 +60,19 @@ app.post("/buy", (req, res) => {
 
   res.json(user);
 });
+app.get("/inventory/:userId", (req, res) => {
 
+  const userId = req.params.userId;
+
+  const user = users[userId];
+
+  if (!user) {
+    return res.json([]);
+  }
+
+  res.json(user.inventory);
+
+});
 app.listen(PORT, () => {
   console.log("Server running on port " + PORT);
 });
